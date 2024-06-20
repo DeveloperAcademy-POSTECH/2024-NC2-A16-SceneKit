@@ -17,7 +17,8 @@ SceneKit의 시작점에서, SceneKit의 기본을 맛봄과 동시에 ARKit과 
 역사적 공부를 하는 유저가, 특정 역사적 인물을 카메라로 인식하게하면, 해당 인물의 텍스트 정보와, 국기, 3차원 흉상을 증강된 현실 위에 보여줍니다..
 
 ## 🛠️ About Code
->  **Code1**
+>  **Code1** AR앱이 추적할 이미지를 설정
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -33,7 +34,10 @@ SceneKit의 시작점에서, SceneKit의 기본을 맛봄과 동시에 ARKit과 
         sceneView.session.run(configuration)
     }
 
->  **Code2**
+
+
+>  **Code2** 초당 frame 당 실행되는 함수에, 추적 중인 이미지가 확인되었을 때에 증강된 현실에 정보를 배치
+
     func renderer(_ renderer: SCNSceneRenderer, nodeFor anchor: ARAnchor) -> SCNNode? {
        
         let node = SCNNode()
@@ -44,7 +48,8 @@ SceneKit의 시작점에서, SceneKit의 기본을 맛봄과 동시에 ARKit과 
         if let imageName = imageAnchor.referenceImage.name {
             makeModel(on: planeNode, name: imageName)
         }
->  **Code3**
+>  **Code3** 인식된 이미지의 정보를 확인하고, 일치할 때에 3D모델이 올바른 위치와 크기, 회전을 가지도록 설정 
+
     func makeModel(on planeNode: SCNNode, name: String) {
         if Card.Kimgu.name == name{
             guard let scene3D = SCNScene(named: Card.Kimgu.assetLocation) else { return }
