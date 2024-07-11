@@ -88,11 +88,9 @@ class ViewController: UIViewController, ARSCNViewDelegate  {
         
         sceneView.scene.rootNode.addChildNode(flagNode)
         sceneView.automaticallyUpdatesLighting = true
-        sceneView.session.remove(anchor: imageAnchor)
         
         return node
     }
-    
     
     func loadData() {
         guard let url = Bundle.main.url(forResource: "independences", withExtension: "json") else {
